@@ -6,7 +6,7 @@
 <?php
 
 
-$sql = "SELECT DISTINCT * FROM eventos WHERE fechainicio >= '2024-01-01' AND fechafin <= '2024-12-31' ORDER BY fechainicio ASC;";
+$sql = "SELECT DISTINCT titulo,fechainicio,fechafin,lat,lon, descripcion, foto  FROM eventos WHERE fechainicio >= '2024-01-01' AND fechafin <= '2024-12-31' ORDER BY fechainicio ASC;";
 $datos= consulta($sql, true);
 
 foreach($datos as $dato){

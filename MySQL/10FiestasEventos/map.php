@@ -2,9 +2,8 @@
 <?php include '_header.php'; ?>
 
 <?php
-$sql = "SELECT DISTINCT titulo, descripcion, foto, lat, lon, fechainicio, fechafin FROM eventos;";
+$sql = "SELECT * FROM eventos;";
 $datos= consulta($sql, true);
-
 
 echo '<pre><code>';
 print_r($datos);
@@ -13,8 +12,6 @@ echo '</code></pre>';
 ?>
 
 <a href="index.php">Inicio</a>
-    
-
 
 <!-- Incluye Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -31,7 +28,7 @@ echo '</code></pre>';
       <?php foreach($datos as $evento){
         echo "{ lat: ".$evento['lat']." , lon: ". $evento['lon'] .", ";
         echo "title: \"".$evento['titulo']."\", ";
-        echo "content: \"".$evento['descripcion']."\"}, \n";
+        echo "content: \"".$evento['descripcion']." <a href='info.php?id=".$evento['id']."'>Ver más</a>\"}, \n";
       } ?>
       
     ];
