@@ -1,0 +1,19 @@
+DirectoryIndex inicio.php
+
+RewriteEngine On
+# RewriteBase /
+
+
+
+# Redirecciones
+RewriteRule ^inicio$ inicio.php [L]
+RewriteRule ^reset$ reset.php [L]
+RewriteRule ^insertar$ insertar.php [L]
+RewriteRule ^error$ 404.php [L]
+
+# Error 404
+RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^(.*)$ 404.php [L]
+
+
