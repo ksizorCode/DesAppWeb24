@@ -131,3 +131,23 @@ function img($urlimagen, $alt="", $class="",$title=""){
         };
 };
 
+
+
+
+// Body ID
+
+// Ejemplo de uso: $body_id = agregarIdAlBody($tu_variable, $titulo);
+function idBody($titulo) {
+    if(isset($titulo)){
+       // $id=strtolower(str_replace(' ', '-', $titulo));
+        $id = formatTXT($titulo);
+        echo 'id="'.$id.'"';
+    }
+}
+
+
+
+// Limpiar texto formato URL o ID o CLASS
+function formatTXT($txt){
+        return strtolower(str_replace(' ', '-', $txt));
+}

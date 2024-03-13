@@ -64,6 +64,7 @@ button{
     text-align: center;
     /* min-width: 180px; */
     border:solid 1px var(--c1);
+    background:white;
     color:var(--c1);
     transition:1s;
     cursor: pointer;
@@ -82,6 +83,109 @@ button:hover{
 }
 
 
+
+
+
+
+
+/* LISTADOS */
+header nav ul,
+footer nav ul,
+ul.galeria,
+ul.lista,
+ul.reticula{
+    list-style:none;
+    padding-left:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+ul.galeria li,
+ul.lista li,
+ul.reticula li{
+    display:flex;
+    justify-content: space-between;
+}
+
+ul.lista{
+    display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+ul.lista li{
+    flex-direction:column;
+
+    background-size: cover;
+    outline: 2px solid var(--c1);
+    border-radius:10px;
+    padding: 6px;
+    margin: 20px 0 40px 0;
+    /* overflow: hidden; */
+    position:relative;
+    background: url(assets/img/001.jpg)top center no-repeat;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px, rgba(0, 0, 0, 0) 0px px px;
+    transition:0.3s;
+}
+
+ul.lista li:hover{
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 9px 10px 4px,
+        rgba(0, 0, 0, 0.23) 1px 5px 8px 2px;
+}
+
+ul.lista li:hover .btn{
+    background:var(--c1);
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 9px 10px 4px,
+        rgba(0, 0, 0, 0.23) 1px 5px 8px 2px;
+}
+
+ul.lista li div{
+    background: linear-gradient(#FFFFFF33, #FFFFFFFF);
+    padding:18px;
+    border-radius: 8px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    background-blend-mode: overlay;
+    min-height: 170px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+ul.lista li div .btn{
+    width: 90%;
+    margin: 0 12px;
+    position: absolute;
+    bottom: -16px;
+    left: 0;   
+}
+
+ul.lista li h2{
+    margin:5px 0;
+    color:var(--c1);
+    font-size: clamp(.5em, 1.2rem, 2rem);
+
+}
+
+ul.lista li img{
+    max-width: calc(100% + 18px);
+    height:120px;
+    object-fit:cover;
+    margin: -6px;
+    border-radius: 10px 10px 0 0;
+}
+
+ul.galeria{}
+
+ul.reticula{
+}
+
+li span{
+    display:block;
+}
+
+
+
+
+/* DEBUG */
 
 
 
@@ -180,64 +284,27 @@ pre,code {
 }
 
 
+/* Efecto video fondo */
 
-/* LISTADOS */
-header nav ul,
-footer nav ul,
-ul.galeria,
-ul.lista,
-ul.reticula{
-    list-style:none;
-    padding-left:0;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-ul.galeria li,
-ul.lista li,
-ul.reticula li{
-    display:flex;
-    justify-content: space-between;
-}
-
-ul.lista{
-    display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-}
-
-ul.lista li{
-    flex-direction:column;
-}
-
-ul.lista li{
-    outline: 1px solid var(--c1);
-    border-radius:10px;
-    padding:10px;
-    overflow: hidden;
-    position:relative;
+#bgVideo {
+    position: fixed;
+    inset:0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index:-1;  
 }
 
 
-ul.lista li h2{
-    font-size: clamp(.5em, 1.2rem, 2rem);
-
+header, main, footer{
+    background:#FFFFFF88;
+    padding:20px;
+    border-radius:20px;
+    margin:20px 0; 
 }
+  
 
-ul.lista li img{
-    max-width: calc(100% + 20px);
-    height:120px;
-    object-fit:cover;
-    margin:-10px;
-}
-
-ul.galeria{}
-
-ul.reticula{
-}
-
-li span{
-    display:block;
-}
-
-
+body#error-404 h1{
+    background:var(--c1);
+    display:inline-block;
+   }
+  
