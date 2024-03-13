@@ -1,8 +1,9 @@
+# El archivo de inicio es este en lugar de index:
 DirectoryIndex inicio.php
 
+# Activa reescritura
 RewriteEngine On
 # RewriteBase /
-
 
 
 # Redirecciones
@@ -16,4 +17,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
  RewriteCond %{REQUEST_FILENAME} !-d
  RewriteRule ^(.*)$ 404.php [L]
 
+
+ # Otras referencias:
+ # https://es.semrush.com/blog/archivo-htaccess/
+ # https://www.one.com/es/hosting/que-es-htaccess
 

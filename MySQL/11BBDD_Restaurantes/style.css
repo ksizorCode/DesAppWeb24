@@ -1,16 +1,27 @@
 :root{
-    --c1:coral;
+    --c1:#FF0C49;
     --c2:tan;
     --c3:black;
 
     --ff:sans-serif;
     --mw:960px;
+    --bdrs:10px;
 }
+*, *::before, *::after{
+    box-sizing:border-box;
+}
+
 body{
     font-family: var(--ff);
     max-width:var(--mw);
     margin: 0 auto;
     padding: 20px;
+
+    /*Suavizado de texto*/
+    font-smooth: always; /* Para navegadores que admiten esta propiedad */
+    -webkit-font-smoothing: antialiased; /* Para navegadores WebKit (Safari, Chrome) */
+    -moz-osx-font-smoothing: grayscale; /* Para Firefox en macOS */
+    text-rendering: optimizeLegibility; /* Mejora la legibilidad general */
 }
 
 h1, h2, h3, h4, h5, h6{}
@@ -29,18 +40,204 @@ img{
 
 header, main, footer{}
 
-header{}
-header nav ul,
-footer nav ul{
-    list-style:none;
-    padding-left:0;
-
+header{
     display:flex;
-    gap:10px;
-    
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
 }
+
 
 
 main{}
 
 footer{}
+
+
+.btn,
+input[type="submit"],
+input[type="button"],
+button{
+    padding: 4px 8px;
+    border-radius: var(--bdrs);
+    text-align: center;
+    /* min-width: 180px; */
+    border:solid 1px var(--c1);
+    color:var(--c1);
+    transition:1s;
+    cursor: pointer;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.logo{display:block; font-weight:bolder; font-size:1.2rem;}
+
+.btn:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover{
+    background:var(--c1);
+    color:white;
+}
+
+
+
+
+
+
+.debug{
+    padding: 10px 28px;
+    border-radius:var(--bdrs);
+    border: solid 1px #BBB;
+    outline: var(--c1) dashed 1px;
+    outline-offset: 2px;
+    margin: 14px 0 6px 0;
+    position:relative;
+    box-shadow: inset rgba(0, 0, 0, 0.15) -2px 3px 2px, inset rgba(0, 0, 0, 0.05) -9px -2px 10px;
+
+    /* Fondo */
+    background-color: #e5e5f7;
+    background-image:  linear-gradient(#DDD 2px, transparent 2px), linear-gradient(90deg, #DDD 2px, transparent 2px), linear-gradient(#DDD 1px, transparent 1px), linear-gradient(90deg, #DDD 1px, #e5e5f7 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+.debug span{
+     color:var(--c1);
+    font-weight:bold;
+    font-size:14px;
+    font-family:monospace;
+letter-spacing:1px;
+display:block;}
+
+.debug pre{ margin:0;}
+
+.debug{border-left: solid 25px var(--c1);}
+
+.debug::before{
+    content: "\f071";
+    font-family: "Font Awesome 5 Free"; /* Nombre de la fuente de Font Awesome */
+    font-weight: 900;
+    position:absolute;
+    top: 10px;
+    left: -15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background: #FFFFFFAA;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(33px);
+    background-blend-mode: overlay;
+    width:30px;
+    height:30px;
+    border:solid 1px var(--c1);
+    box-shadow:0 0 0 4px #FFFFFF88;
+    color:#333;
+    animation: blop 1s;
+}
+
+.debug.code:before{
+    content: "\f121";
+}
+
+
+.debug.sql{
+    border-color:#BBB;
+    margin-left:12px;
+}
+.debug.sql:before{
+    content: "\f1c0";
+}
+
+.debug.sql pre{
+    outline:solid 1px grey;
+    padding:16px 10px;
+    border-radius:var(--bdrs);
+    margin-top:20px;    
+}
+
+
+@keyframes blop{
+    0%{ scale:0.1;}
+}
+
+
+
+
+pre,code {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+
+::selection {
+    background-color: #ffcc00;
+    background-color:var(--c1);
+    color: #333;
+}
+
+
+
+/* LISTADOS */
+header nav ul,
+footer nav ul,
+ul.galeria,
+ul.lista,
+ul.reticula{
+    list-style:none;
+    padding-left:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+ul.galeria li,
+ul.lista li,
+ul.reticula li{
+    display:flex;
+    justify-content: space-between;
+}
+
+ul.lista{
+    display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+ul.lista li{
+    flex-direction:column;
+}
+
+ul.lista li{
+    outline: 1px solid var(--c1);
+    border-radius:10px;
+    padding:10px;
+    overflow: hidden;
+    position:relative;
+}
+
+
+ul.lista li h2{
+    font-size: clamp(.5em, 1.2rem, 2rem);
+
+}
+
+ul.lista li img{
+    max-width: calc(100% + 20px);
+    height:120px;
+    object-fit:cover;
+    margin:-10px;
+}
+
+ul.galeria{}
+
+ul.reticula{
+}
+
+li span{
+    display:block;
+}
+
+
