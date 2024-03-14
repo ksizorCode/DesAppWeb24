@@ -66,8 +66,7 @@ function consulta($sql, $devolverDatos = true)
 
 
 // Debug
-function debug($txt, $formato = "alerta")
-{
+function debug($txt, $formato = "alerta"){
     if (DEBUG) {
         switch ($formato) {
             case 'array':
@@ -96,8 +95,7 @@ function debug($txt, $formato = "alerta")
 
 
 //Compresión HTML   -   -   -   -   -   -   -   -   -   -   -   -
-function ob_html_compress($buffer)
-{
+function ob_html_compress($buffer){
     // Eliminar saltos de línea, tabulaciones y espacios en blanco redundantes.
     return str_replace(array("\n", "\r", "\t", "  "), '', $buffer);
 }
