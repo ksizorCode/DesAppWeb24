@@ -15,15 +15,13 @@ RewriteRule ^reset$ reset.php [L]
 RewriteRule ^insertar$ insertar.php [L]
 RewriteRule ^error$ 404.php [L]
 
-
-
  # Otras referencias:
  # https://es.semrush.com/blog/archivo-htaccess/
  # https://www.one.com/es/hosting/que-es-htaccess
 
 
- # Redirecciones através de Consultas a PHP
- RewriteEngine On
+# Redirecciones através de Consultas a PHP
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/?$ info.php?slug=$1 [L]

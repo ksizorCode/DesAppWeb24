@@ -2,13 +2,21 @@
 include_once '_functions.php';
 
 //Capturamos los datos que llegan via GET
+if(isset($_GET['slug'])){
 $slug=$_GET['slug'];
+}
+else{
+    header('Location: error.html');
+}
 
 //Consulta a BBDD
 $sql='SELECT * FROM restaurantes WHERE slug="'.$slug.'"';
 $datos=consulta($sql);
 debug($sql,'code');
 
+if($datos=='ERROR'){
+    header('Location: error');
+}
 //Convertimos los valore de la consulta a un array limpio
 $dato = $datos[0];
 debug($dato,'array');

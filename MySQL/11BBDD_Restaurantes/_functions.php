@@ -57,7 +57,7 @@ function consulta($sql, $devolverDatos = true)
             return $datos; // devolver datos
             debug($datos, 'array');
         } else {
-            return $result; // devolver posibles errores
+            return 'ERROR'; // devolver posibles errores
             debug($result);
         }
     }
@@ -104,14 +104,13 @@ function ob_html_compress($buffer)
 
 function inicioCompresion()
 {
-    ob_start("ob_html_compress");
+    if(COMPRESS){    ob_start("ob_html_compress"); }
 }
 
 function finCompresion()
 {
-    ob_end_flush();
+    if(COMPRESS){    ob_end_flush();    }
 }
-
 
 
 
