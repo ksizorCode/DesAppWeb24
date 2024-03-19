@@ -1,7 +1,49 @@
 <?php
 //Debug Mode
 const DEBUG = 1;
-const COMPRESS = 0;
+const COMPRESS = 1;
+const RUTA ='http://localhost:10053/';
+
+$Alertas=[];
+
+function iniciarSesion(){
+    //Si la sesión no se ha iniciado: iníciala.
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+}
+
+iniciarSesion();
+
+
+
+
+// SESION
+// Comprobar si la sesión se ha iniciado cada vez que se carga una página nueva
+function rolAdmin() {
+    global $Alertas; // Declarar $Alertas como global
+    if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin') {
+        $Alertas[]='Estás logueado como Administrador';
+        return true;
+    } else {
+        $Alertas[]='No estás logueado como Admin: yes un nadie!';
+        return false;
+    }
+}
+
+
+
+
+
+
+
+// define('DS', DIRECTORY_SEPARATOR); //Separador de directorios
+// $config['base']=RUTA.basename(dirname(__FILE__));
+// $config['view']=$config['base'].DS.'views'.DS;
+// $config['model']=$config['base'].DS.'models'.DS;
+// $config['controller']=$config['base'].DS.'controllers'.DS;
+// include($config['controller'].'mainController.php');
+
 
 //Cargar datos
 include_once '_data.php';
@@ -14,11 +56,20 @@ function menuBuilder($menuitems = MENU)
 {
     echo '<nav><ul class="menu">';
     foreach ($menuitems as $menu) {
-        echo '<li><a href="' . $menu['url'] . '" title="' . $menu['title'] . '"';
+        echo '<li><a href="'.RUTA . $menu['url'] . '" title="' . $menu['title'] . '"';
         echo ($menu['class']) ? ' class="' . $menu['class'] . '"' : '';
         echo ($menu['target']) ? ' target="_blank"' : '';
         echo '>' . $menu['nombre'] . '</a></li>';
     }
+
+
+    if(!rolAdmin()){
+        echo '<li><a href="login">Acceder</a></li>';}
+        else{
+            echo '<li><a href="'.RUTA.'cerrar-sesion">Cerrar Sesión</a> </li>';
+        }
+
+
     echo '</ul></nav>';
 }
 
@@ -65,37 +116,83 @@ function consulta($sql, $devolverDatos = true)
 
 
 
-// Debug
-function debug($txt, $formato = "alerta"){
+/*  
+ * DEBUGIN Y DESARROLLO  -  -  -  -
+ */
+
+// Si el modo Debug está activado mostrar todos los posibles errores / si no no..
+if (DEBUG) { error_reporting(E_ALL);}
+else { error_reporting(0);}
+
+
+// Mostrar mensajes de errores
+function debug($txt, $formato = "alerta")
+{
     if (DEBUG) {
+        $html='';
         switch ($formato) {
             case 'array':
-                echo '<div class="debug array"><span>Array</span>';
-                echo '<pre>' . print_r($txt, true) . '</pre>';
-                echo '</div>';
+                $html.= '<div class="debug array"><span>/*print_r del Array */</span>';
+                $html.= '<pre>' . htmlspecialchars(print_r($txt, true)) . '</pre>';
+                $html.= '</div>';
                 break;
             case 'code':
-                echo '<div class="debug code"><span>/* Fragmento de Código */:</span>';
-                echo '<pre><code>' . htmlspecialchars($txt, ENT_QUOTES, 'UTF-8') . '</code></pre>';
-                echo '</div>';
+                $html.= '<div class="debug code"><span>/* Fragmento de Código */:</span>';
+                $html.= '<pre><code>' . htmlspecialchars($txt, ENT_QUOTES, 'UTF-8') . '</code></pre>';
+                $html.= '</div>';
                 break;
             case 'sql':
-                echo '<div class="debug sql"><span># CONSULTA MySQL:</span>';
-                echo '<pre><code>' . nl2br(htmlspecialchars($txt, ENT_QUOTES, 'UTF-8')) . '</code></pre>';
-                echo '</div>';
+                $html.= '<div class="debug sql"><span># CONSULTA MySQL:</span>';
+                $html.= '<pre><code>' . nl2br(htmlspecialchars($txt, ENT_QUOTES, 'UTF-8')) . '</code></pre>';
+                $html.= '</div>';
                 break;
             default:
-                echo '<div class="debug alert"><span>Aviso:</span>';
-                echo $txt;
-                echo '</div>';
+                $html.= '<div class="debug alert"><span>Aviso:</span>';
+                $html.= $txt;
+                $html.= '</div>';
         }
+
+
+
+        echo $html;
     }
 }
 
 
 
+
+// Añadir a la lista de Alertas que se van a mostrar al final
+function addAlert($texto){
+    global $Alertas;
+        $Alertas[] =$texto;
+}
+
+
+// Imprimir y recorrer lista de  Alertas para mostrarlas en el footer.
+function listarAlertas(){
+    if(DEBUG){
+        global $Alertas;
+        echo '<div class="debug">';
+        echo '<span><strong>LISTADO DE TODAS LAS ALERTAS DE ESTE APARTADO:</strong></span>';
+
+        // Limpia los elementos duplicados en el array $Alertas para que no salga una misma alerta dos veces si se hubiera dado el caso.
+        $Alertas = array_unique($Alertas);
+
+        foreach( $Alertas as $alerta){
+            debug($alerta);
+        }
+        echo '</div>';
+
+    }
+}
+
+
+
+
+
 //Compresión HTML   -   -   -   -   -   -   -   -   -   -   -   -
-function ob_html_compress($buffer){
+function ob_html_compress($buffer)
+{
     // Eliminar saltos de línea, tabulaciones y espacios en blanco redundantes.
     return str_replace(array("\n", "\r", "\t", "  "), '', $buffer);
 }
@@ -105,9 +202,8 @@ function inicioCompresion()
     if(COMPRESS){    ob_start("ob_html_compress"); }
 }
 
-function finCompresion()
-{
-    if(COMPRESS){    ob_end_flush();    }
+function finCompresion(){
+    if(COMPRESS){ob_end_flush();}
 }
 
 
@@ -122,8 +218,11 @@ function img($urlimagen, $alt="", $class="",$title=""){
 	#if (@getimagesize($imagenRuta)) {
     if (file_exists($imagenRuta) && is_file($imagenRuta)) {
 
-    	echo "<img src=\"{$imagenRuta}\" alt=\"{$alt}\" title=\"{$title}\" class=\"{$class}\">";
-        } else {
+
+    	//echo "<img src=\"{$imagenRuta}\" alt=\"{$alt}\" title=\"{$title}\" class=\"{$class}\">";
+        echo "<img src=\"" . RUTA . "{$imagenRuta}\" alt=\"{$alt}\" title=\"{$title}\" class=\"{$class}\">";
+    
+    } else {
         	echo "<p>No se pudo cargar la imagen: {$urlimagen}</p>";
         };
 };
@@ -147,4 +246,21 @@ function idBody($titulo) {
 // Limpiar texto formato URL o ID o CLASS
 function formatTXT($txt){
         return strtolower(str_replace(' ', '-', $txt));
+}
+
+
+
+function crearSesion($nombre,$valor){
+    $_SESSION[$nombre] = $valor;
+    addAlert('Sesión: '.$nombre.' craeda con el valor:'.$valor);
+
+}
+
+
+function cerrarSesion(){
+    // elimina todas las variables de las sesiones creadas
+    session_unset();
+
+    // destruye la sesión
+    session_destroy();
 }

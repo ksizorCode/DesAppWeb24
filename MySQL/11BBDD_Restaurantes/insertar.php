@@ -3,45 +3,62 @@ include_once '_functions.php';
 $titulo='Insertar';
 include '_header.php';?>
 
-<form>
 
-    <label onchange="slugify()">Nombre del Local:
-        <input type="text" name="nombre" id="nombre">
-    </label>
+<?php
 
-    <label>Dirección
-        <input type="text" name="direccion">
-    </label>
 
-    <label>Foto:
-        <input type="file" name="foto">
-    </label>
 
-    <label>telefono:
-        <input type="number" name="telefono">
-    </label>
-
-    <label>web
-        <input type="url" name="web">
-    </label>
-    <label>web
-        <input type="url" name="web">
-    </label>
+    if(rolAdmin()){
+        //bienvenida
+	echo "<h1>Bienvenido administrador, puedes insertar un nuevo usuario o editar uno existente.</h1>";
     
-    <label>descripcion
-        <input type="text" name="descripcion">
-    </label>
+    // Crear formulario
+    echo '
+    <form>
+    
+        <label onchange="slugify()">Nombre del Local:
+            <input type="text" name="nombre" id="nombre">
+        </label>
+    
+        <label>Dirección
+            <input type="text" name="direccion">
+        </label>
+    
+        <label>Foto:
+            <input type="file" name="foto">
+        </label>
+    
+        <label>telefono:
+            <input type="number" name="telefono">
+        </label>
+    
+        <label>web
+            <input type="url" name="web">
+        </label>
+        <label>web
+            <input type="url" name="web">
+        </label>
+        
+        <label>descripcion
+            <input type="text" name="descripcion">
+        </label>
+    
+        <label onchange="slugCorrecto()">slug
+            <input type="text" name="slug" id="slug">
+        </label>
+    
+        <label>Nombre del Local:
+            <input type="text" name="nombre">
+        </label>
+    
+        <input type="submit" value="Enviar">
+    </form>';
+}else{
+    echo '<h1>No eres administrador. No podrás editar o añadir elementos a no ser que inicies sesión</h1>';
+}
 
-    <label onchange="slugCorrecto()">slug
-        <input type="text" name="slug" id="slug">
-    </label>
+?>
 
-    <label>Nombre del Local:
-        <input type="text" name="nombre">
-    </label>
-
-    <input type="submit" value="Enviar">
-</form>
 
 
 <script>

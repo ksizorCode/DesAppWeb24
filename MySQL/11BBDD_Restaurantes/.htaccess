@@ -13,6 +13,9 @@ RewriteEngine On
 RewriteRule ^inicio$ inicio.php [L]
 RewriteRule ^reset$ reset.php [L]
 RewriteRule ^insertar$ insertar.php [L]
+RewriteRule ^login$ login/index.php [L]
+RewriteRule ^olvide-contraseña$ login/forgot.php [L]
+RewriteRule ^cerrar-sesion$ login/cerrar_sesion.php [L]
 RewriteRule ^error$ 404.php [L]
 
  # Otras referencias:

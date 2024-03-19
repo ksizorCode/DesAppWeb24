@@ -13,12 +13,12 @@
     }
     ?>
 
-    <link rel="stylesheet" href="style.css?v?=<?php echo time()?>">
+    <link rel="stylesheet" href="<?php echo RUTA;?>/style.css?v?=<?php echo time()?>">
 </head>
 <body <?php idBody($titulo);?>>
 
 <header>
-    <span class="logo"><?echo  TITULO;?></span>
+    <a href="inicio" id="headerlogo" class="logo"><?echo  TITULO;?></a>
     <?php menuBuilder();?>
 </header>
 <main>

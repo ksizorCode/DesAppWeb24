@@ -29,10 +29,9 @@ $titulo =$dato['nombre'];
 
 
 <?php
-
 //Construimos la estructura de contenido de la ficha del restaurante
 $alt="Restaurante ".$dato['nombre']." en ".$dato['direccion'];
-img($dato['foto'],$alt);
+img($dato['foto'],$alt,'portada');
 ?>
 
 <address><?php echo $dato['direccion'];?></address>

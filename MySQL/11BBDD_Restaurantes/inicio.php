@@ -16,11 +16,17 @@ include '_header.php';?>
 
             echo '<div>';
             echo '<h2>'.$dato['nombre'].'</h2>';
-            echo '<span>Dirección: '.$dato['direccion'].'</span>';
-            echo '<span>Teléfono: '.$dato['telefono'].'</span>'; 
+            echo '<span class="extracto">'.$dato['extracto'].'</span>';
+            echo '<span class="telefono">'.$dato['telefono'].'</span>'; 
+            echo '<span class="direccion">'.$dato['direccion'].'</span>';
+
             //echo '<a href="info.php?id='.$dato['id'].'" class="btn">Ver más</a>';
             echo '<a href="'.$dato['slug'].'" class="btn">Ver más</a>';
             echo '</div>';
+
+            if(rolAdmin()){
+                echo '<a href="'.$dato['slug'].'" class="editar"></a>';
+                }
 
         echo '</li>';
     }   
