@@ -19,29 +19,43 @@ include '_header.php';?>
         <label onchange="slugify()">Nombre del Local:
             <input type="text" name="nombre" id="nombre">
         </label>
+
     
         <label>Dirección
             <input type="text" name="direccion">
         </label>
+
+        <label>telefono:
+        <input type="number" name="telefono">
+    </label>
+
+
+        <label>Latitud
+        <input type="text" name="lat">
+    </label>
+
+    <label>Longitud
+    <input type="text" name="lon">
+</label>
     
         <label>Foto:
             <input type="file" name="foto">
         </label>
     
-        <label>telefono:
-            <input type="number" name="telefono">
-        </label>
+     
     
         <label>web
             <input type="url" name="web">
         </label>
-        <label>web
-            <input type="url" name="web">
-        </label>
+    
         
         <label>descripcion
-            <input type="text" name="descripcion">
+        <textarea name="descripcion"></textarea>
         </label>
+
+        <label>extracto (descripción corta)
+        <input type="text" name="extracto">
+    </label>
     
         <label onchange="slugCorrecto()">slug
             <input type="text" name="slug" id="slug">

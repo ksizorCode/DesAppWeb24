@@ -450,11 +450,7 @@ body#error-404 h1{
     margin:0 auto;
 }
 
-form input{
-    border: solid 1px grey;
-    border-radius:6px;
-    padding:4px 10px;
-}
+
 
 form input:focus{
     outline-color:var(--c1);
@@ -473,10 +469,21 @@ form input[type="text"],
 form input[type="password"],
 form input[type="date"],
 form input[type="number"],
-form input[type="email"]{
+form input[type="url"],
+form input[type="email"],
+form input[type="file"],
+form textarea{
 	width:100%;
+	  border: solid 1px grey;
+    border-radius:6px;
+    padding:4px 10px;
 }
 
+form{
+	display:grid;
+	grid-template-columns:repeat(4, 1fr);
+	gap:2rem;
+}
 
 
 form input[type="submit"]{

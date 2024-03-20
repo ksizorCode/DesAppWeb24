@@ -1,7 +1,7 @@
 <?php
 //Debug Mode
 const DEBUG = 1;
-const COMPRESS = 1;
+const COMPRESS = 0;
 const RUTA ='http://localhost:10053/';
 
 $Alertas=[];
