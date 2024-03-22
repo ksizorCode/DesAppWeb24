@@ -58,8 +58,6 @@ include '_header.php';
   <button onclick="cambiarVista(this, 'lista')" title="Mostrar en lista"><i class="fa-solid fa-grip-lines"></i></button>
   <button onclick="cambiarVista(this, 'tabla')" title="Mostrar en tabla"><i class="fa-solid fa-bars"></i></button>
   <button onclick="cambiarVista(this, 'ficha')" title="Mostrar en Mini-fichas"><i class="fa-solid fa-table-cells"></i></button>
-  <input type="range" min="120" max="1200" value="120" id="slider">
-
 </div>
 
 
@@ -119,33 +117,7 @@ if (isset($datos) && !empty($datos)) {
 </ul>
 
 
-
-
-
 <script>
-/* CAMBIO TAMAÑO */
-document.addEventListener("DOMContentLoaded", function() {
-  let slider = document.getElementById("slider");
-  let lista = document.getElementById("catalogo");
-
-  // Evento para escuchar el cambio en el slider
-  slider.addEventListener("input", function() {
-    // Cambiar el ancho de los elementos li según el valor del slider
-    let value = this.value;
-    let lis = lista.getElementsByTagName("li");
-    for (let i = 0; i < lis.length; i++) {
-      lis[i].style.width = value + "px";
-    }
-  });
-});
-
-</script>
-
-
-
-
-<script>
-    //MAPA //
     // Arreglo de localizaciones con sus respectivas coordenadas y contenido del marcador
     var locations = [
 
