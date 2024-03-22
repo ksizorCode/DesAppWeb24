@@ -2,7 +2,7 @@
 //Debug Mode
 const DEBUG = 1;
 const COMPRESS = 0;
-const RUTA ='http://localhost:10010/';
+const RUTA ='http://localhost:10053/';
 
 $Alertas=[];
 
@@ -108,8 +108,8 @@ function consulta($sql, $devolverDatos = true)
             return $datos; // devolver datos
             debug($datos, 'array');
         } else {
-            //return 'ERROR'; // devolver posibles errores
-            //debug($result);
+            return 'ERROR'; // devolver posibles errores
+            debug($result);
         }
     }
 }
@@ -263,4 +263,14 @@ function cerrarSesion(){
 
     // destruye la sesión
     session_destroy();
+}
+
+
+
+/*   *   *   *   *   *   *   *   *   *   *   *   */
+/* MAPA 
+===============================*/
+
+function cargarMapa($datos){
+    include 'assets/includes/mapa.php';    
 }

@@ -54,12 +54,19 @@ include '_header.php';
 
 
 <div class="bntVista">
+    <nav>
   <button onclick="cambiarVista(this, 'galeria')" title="Mostrar listado en cuadrícula" class="activo" ><i class="fa-solid fa-grip"></i></button>
   <button onclick="cambiarVista(this, 'lista')" title="Mostrar en lista"><i class="fa-solid fa-grip-lines"></i></button>
   <button onclick="cambiarVista(this, 'tabla')" title="Mostrar en tabla"><i class="fa-solid fa-bars"></i></button>
-  <button onclick="cambiarVista(this, 'ficha')" title="Mostrar en Mini-fichas"><i class="fa-solid fa-table-cells"></i></button>
-  <input type="range" min="120" max="1200" value="120" id="slider">
+  <button onclick="cambiarVista(this, 'ficha')" title="Mostrar en Mini-fichas"><i class="fa-solid fa-table-cells-large"></i></button>
+  <button onclick="cambiarVista(this, 'reticula')" title="Mostrar en Retícula"><i class="fa-solid fa-table-cells"></i></button>
+    </nav>
+  <details>
+    <summary title="Opciones"><i class="fa-solid fa-sliders"></i></summary>
+  <input type="range" min="10" max="100"  id="slider">
 
+  <span>Vista tipo: <span id="textoVista" class="corporativo">galeria</span> a un <span id="textoVistaValue" class="corporativo">24%</span></span>
+  </details>
 </div>
 
 
@@ -121,126 +128,14 @@ if (isset($datos) && !empty($datos)) {
 
 
 
-
-<script>
-/* CAMBIO TAMAÑO */
-document.addEventListener("DOMContentLoaded", function() {
-  let slider = document.getElementById("slider");
-  let lista = document.getElementById("catalogo");
-
-  // Evento para escuchar el cambio en el slider
-  slider.addEventListener("input", function() {
-    // Cambiar el ancho de los elementos li según el valor del slider
-    let value = this.value;
-    let lis = lista.getElementsByTagName("li");
-    for (let i = 0; i < lis.length; i++) {
-      lis[i].style.width = value + "px";
-    }
-  });
-});
-
-</script>
+<!-- Carga JS slider -->
+<script src="<?php echo RUTA.'/assets/js/catalogo_slider.js'?>"></script>
+<!-- Carga JS filtro visualización -->
+<script src="<?php echo RUTA.'/assets/js/catalogo_filtro_visualizaciones.js'?>"></script>
 
 
 
+<?php cargarMapa($datos);?> 
 
-<script>
-    //MAPA //
-    // Arreglo de localizaciones con sus respectivas coordenadas y contenido del marcador
-    var locations = [
-
-      <?php foreach($datos as $dato){
-        echo "{";
-        echo "lat:".$dato['lat'].",lon:".$dato['lon'].", ";
-        echo "title: \"".$dato['nombre']."\", ";
-        echo "content: \" <img src='".RUTA.'assets/img/'.$dato['foto']."'> ".$dato['extracto']." <a href='".$dato['slug']."'>Ver más</a>\"";
-      
-        echo "}, \n";
-      } ?>
-      
-    ];
-  
-    // Creamos el objeto que representará al mapa
-  
-
-    console.log(locations);
-
-    // Inicializar el mapa
-    var mapa = L.map('mapa', {
-        center: [43.445813, -5.847552],
-        zoom: 9
-    });
-
-    // Añadir una capa de mapa de OpenStreetMap
-    var capaMapa = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(mapa);
-
-    // Añadir una capa de satélite
-    var capaSatelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Esri, DigitalGlobe, GeoIQ, Earthstar Geographics, CNES/Airbus DS, USDA FSA, USGS, Aerogrid, IGN, IGP, and the GIS User Community'
-    });
-
-    // Definir opciones de control de capas
-    var baseMaps = {
-        "Mapa": capaMapa,
-        "Satélite": capaSatelite
-    };
-
-    // Añadir control de capas al mapa
-    L.control.layers(baseMaps).addTo(mapa);
-
-    // Añadir marcadores para cada ubicación en el arreglo
-    locations.forEach(function (location) {
-        var marker = L.marker([location.lat, location.lon]).addTo(mapa);
-        marker.bindPopup('<b>' + location.title + '</b><br>' + location.content);
-    });
-</script>
-
-
-
-
-
-<script>
-
-// function cambiarVista(vista) {
-//     let galeria = document.querySelector('#catalogo');
-
-//     // Eliminar todas las clases actuales de la galería
-//     galeria.classList.remove('lista');
-//     galeria.classList.remove('galeria');
-//     galeria.classList.remove('tabla');
-//     galeria.classList.remove('ficha');
-
-//     // Agregar la clase correspondiente según la opción seleccionada
-//     galeria.classList.add(vista);
-//     }
-
-
-
-function cambiarVista(boton, vista) {
-    let galeria = document.querySelector('#catalogo');
-let botones = document.querySelectorAll('.bntVista button');
-  
-    // Eliminar la clase 'activo' de todos los botones dentro de '.bntVista'
-    botones.forEach(function(boton) {
-      boton.classList.remove('activo');
-    });
-  
-    // Agregar la clase 'activo' solo al botón clicado
-    boton.classList.add('activo');
-  
-    // Eliminar todas las clases actuales de la galería
-    galeria.classList.remove('galeria');
-    galeria.classList.remove('lista');
-    galeria.classList.remove('tabla');
-    galeria.classList.remove('ficha');
-  
-    // Agregar la clase correspondiente según la opción seleccionada
-    galeria.classList.add(vista);
-  }
-  
-
-</script>
 
 <?php include '_footer.php';?>

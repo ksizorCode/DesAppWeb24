@@ -147,7 +147,8 @@ footer nav ul,
 ul.galeria,
 ul.lista,
 ul.ficha,
-ul.tabla{
+ul.tabla,
+ul.reticula{
     list-style:none;
     padding-left:0;
     display:flex;
@@ -163,29 +164,28 @@ ul.reticula li,
 ul.tabla li{
     display:flex;
     justify-content: space-between;
+    flex-direction: column;
 }
 
 ul.galeria{
-    display:grid;
+    display:flex;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 ul.galeria li{
+    min-width: 100px;
     flex-direction:column;
-	background-size: contain;
-
-		outline: 2px solid transparent;
-
-
+    background-size: contain;
+    outline: 2px solid transparent;
     border-radius:10px;
     padding: 6px;
     margin: 20px 0 40px 0;
     /* overflow: hidden; */
     position:relative;
     background: url(assets/img/001.jpg) top center no-repeat;
-
-	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px, rgba(0, 0, 0, 0) 0px px px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px, rgba(0, 0, 0, 0) 0px px px;
     transition:0.3s;
+    max-width: 285px;
 }
 
 ul.galeria li:hover{
@@ -221,7 +221,7 @@ ul.galeria li div{
 
 ul.galeria li h2{
     margin: 6px 0 14px 0;
-    font-size: clamp(1em, 1.6rem, 2rem);
+    font-size: 1rem;
 }
 
 ul.galeria li img{
@@ -254,23 +254,41 @@ ul.lista li:hover div{ background:#FFFFFFEE}
 
 
 
-/* ficha - - - - - - - - - - - - - - - - - - - */
-ul.ficha{display:grid;grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));}
-ul.ficha li{}
-ul.ficha li img{height: 109px;object-fit:cover;mask-image: linear-gradient(black 90%, transparent);}
-ul.ficha li div{background:#FFFFFF88;padding: 12px 8px 0 8px;height: 71%;mask-image: linear-gradient(0deg, black 92%, transparent);}
-ul.ficha li{}
-ul.ficha li h2{ margin:0 0 10px 0; font-size:16px; min-height:30px}
-
 
 
 /* tabla - - - - - - - - - - - - - - - - - */
 
 ul.tabla{}
-ul.tabla li{ width:100%; border-radius: 0 var(--bdrs) var(--bdrs) 0;}
-ul.tabla li img{ max-width:80px; height:80px; object-fit:cover;}
+ul.tabla li{width:100%;flex-direction: row;border-radius: 0 var(--bdrs) var(--bdrs) 0;background-size: cover;min-width: 185px;}
+ul.tabla li img{max-width:80px;height: auto;object-fit:cover;/* opacity: 0; */}
 ul.tabla li div{display: flex;width:100%;flex-direction:row;flex-wrap: wrap;align-content: center;align-items: center;justify-content: space-between;padding: 8px;background: #FFFFFFCC;}
 ul.tabla li:hover{ outline: solid 2px var(--c1)}
+
+
+
+/* ficha - - - - - - - - - - - - - - - - - - - */
+ul.ficha{display: flex;grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));}
+ul.ficha li{}
+ul.ficha li img{width: 100%;height: 120px;object-fit:cover;mask-image: linear-gradient(black 90%, transparent);}
+ul.ficha li div{background:#FFFFFF88;padding: 12px 8px 0 8px;height: 71%;mask-image: linear-gradient(0deg, black 92%, transparent);}
+ul.ficha li{
+    min-width: 140px;
+}
+ul.ficha li h2{ margin:0 0 10px 0; font-size:16px; min-height:30px}
+
+
+
+
+
+/* reticula - - - - - - - - - - - - - - - - - - - */
+ul.reticula{display: flex;grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));}
+ul.reticula li{}
+ul.reticula li img{width: 100%;height: 120px;object-fit:cover;mask-image: linear-gradient(black 90%, transparent);}
+ul.reticula li div{background:#FFFFFF88;padding: 12px 8px 0 8px;height: 71%;mask-image: linear-gradient(0deg, black 92%, transparent);}
+ul.reticula li{
+    min-width: 140px;
+}
+ul.reticula li h2{ margin:0 0 10px 0; font-size:16px; min-height:30px}
 
 
 
@@ -292,7 +310,7 @@ li .editar::before{
 
 
     font-family: FontAwesome; /* Ensure FontAwesome is loaded */
-    content: "\f303"; /* Unicode for pencil icon (adjust for lÃƒÂ¡pis if needed) */
+    content: "\f303"; /* Unicode for pencil icon (adjust for lÃƒÆ’Ã‚Â¡pis if needed) */
     color:var(--c1);
     z-index: 2;
     transition: .3s;
@@ -610,10 +628,88 @@ table img{max-width:80px; border-radius:4px;}
 
 
 
-
 .activo{
 	background-color:var(--c1);
 	color:white;
 	box-shadow: inset 1px 2px 5px 3px #00000044;
 	/* outline:black solid 1px; */
+}
+
+
+
+/* Slider Range - - - - - - - - - - */
+
+input[type="range"] {
+    -webkit-appearance: none;  /* Safari and Chrome */
+    height: 8px;               /* Set height */
+    background: #ddd;           /* Base track color */
+	border-radius:20px;
+	box-shadow:inset 2px 2px 2px 3px #00000022;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;  /* Override default appearance */
+    width: 20px;                 /* Set thumb width */
+    height: 20px;                /* Set thumb height */
+    background: var(--c1);        /* Set thumb color */
+    border: none;                /* Remove default border */
+    border-radius: 50%;         /* Make it round */
+    cursor: pointer;            /* Set cursor for grabbing */
+}
+
+/* For Firefox (inspired by user ratings) */
+input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;      /* Override default appearance */
+    width: 20px;                 /* Set thumb width */
+    height: 20px;                /* Set thumb height */
+    background: var(--c1);          /* Set thumb color */
+    border: none;                /* Remove default border */
+    border-radius: 50%;         /* Make it round */
+    cursor: pointer;            /* Set cursor for grabbing */
+}
+
+
+
+input[type="range"]:disabled::-webkit-slider-thumb{
+	background:grey;
+}
+input[type="range"]:disabled::-webkit-slider-thumb{
+	background:grey;
+}
+
+
+
+
+
+
+.corporativo{
+	color:var(--c1);
+}
+#textoVista{
+	text-transform:uppercase;
+}
+
+
+
+.bntVista{
+	display:flex;
+	gap:4px;
+	align-content: center;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin-top: 4px;
+}
+
+.bntVista details{
+	cursor:pointer;
+}
+
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }
