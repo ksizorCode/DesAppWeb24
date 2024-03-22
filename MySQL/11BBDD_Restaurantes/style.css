@@ -164,17 +164,25 @@ ul.lista{
 
 ul.lista li{
     flex-direction:column;
+	background-size: contain;
 
-    background-size: cover;
-    outline: 2px solid var(--c1);
+		outline: 2px solid transparent;
+
+
     border-radius:10px;
     padding: 6px;
     margin: 20px 0 40px 0;
     /* overflow: hidden; */
     position:relative;
-    background: url(assets/img/001.jpg)top center no-repeat;
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px, rgba(0, 0, 0, 0) 0px px px;
+    background: url(assets/img/001.jpg) top center no-repeat;
+
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px, rgba(0, 0, 0, 0) 0px px px;
     transition:0.3s;
+}
+
+ul.lista li:hover{
+	outline: 2px solid var(--c1);
+
 }
 
 ul.lista li:hover{
@@ -220,6 +228,7 @@ ul.lista li img{
     object-fit:cover;
     margin: -6px;
     border-radius: 10px 10px 0 0;
+	mask-image: linear-gradient(black 90%, transparent);
 }
 
 
@@ -240,7 +249,7 @@ li .editar::before{
 
 
     font-family: FontAwesome; /* Ensure FontAwesome is loaded */
-    content: "\f303"; /* Unicode for pencil icon (adjust for lÃ¡pis if needed) */
+    content: "\f303"; /* Unicode for pencil icon (adjust for lÃƒÂ¡pis if needed) */
     color:var(--c1);
     z-index: 2;
     transition: .3s;
@@ -263,6 +272,9 @@ ul.reticula{
 
 li span{
     display:block;
+    line-height: 1rem;
+    margin-bottom: 8px;
+    font-size: 12px;
 }
 
 .direccion{
@@ -527,3 +539,8 @@ html{border-top:5px var(--c1) solid;}
 
 	left: 50%;
 }
+
+
+/* Table */
+
+table img{max-width:80px; border-radius:4px;}

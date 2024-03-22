@@ -137,7 +137,7 @@ function debug($txt, $formato = "alerta")
                 $html.= '</div>';
                 break;
             case 'code':
-                $html.= '<div class="debug code"><span>/* Fragmento de Código */:</span>';
+                $html.= '<div class="debug code"de><span>/* Fragmento de Código */:</span>';
                 $html.= '<pre><code>' . htmlspecialchars($txt, ENT_QUOTES, 'UTF-8') . '</code></pre>';
                 $html.= '</div>';
                 break;
