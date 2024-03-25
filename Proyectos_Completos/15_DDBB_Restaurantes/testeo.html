@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button onclick="cambiarVista('lista')">Ver en Lista</button>
+    <button onclick="cambiarVista('reticula')">Ver en Cuadrícula</button>
+    <button onclick="cambiarVista('tabla')">Ver en Tabla</button>
+    <button onclick="cambiarVista('ficha')">Ver en Fichas</button>
+    
+    <h1>Hola Mundo</h1>
+    
+    <ul id="catalogo" class="">
+    <li>Hola</li>
+    <li>Hola</li>
+    <li>Hola</li>
+    <li>Hola</li>
+    </ul>
+
+<script>   
+
+function cambiarVista(vista) {
+    let galeria = document.querySelector('#catalogo');
+
+    // Eliminar todas las clases actuales de la galería
+    galeria.classList.remove('lista');
+    galeria.classList.remove('reticula');
+    galeria.classList.remove('tabla');
+    galeria.classList.remove('ficha');
+
+    // Agregar la clase correspondiente según la opción seleccionada
+    galeria.classList.add(vista);
+    }
+
+</script>
+
+
+</body>
+</html>
