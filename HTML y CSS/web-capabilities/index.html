@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página web con apariencia de App</title>
-
-
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1, shrink-to-fit=no">
-    
+    <title>Mi Sitio Web con apariencia de App</title>
+
+    <!-- temas SEO -->
+    <!-- SERP Search Enginer Result Page-->
+    <meta name="description" content="Mi sitio web convertido en una aplicación">
+
+
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="style.css">
 
 
     <!-- Mobile Capablilities -->
-    <meta name="apple-mobile-web-app-title" content="NombreWeb">
+    <meta name="apple-mobile-web-app-title" content="Mi Sitio Web">
     <meta name="mobile-web-app-capable" content="yes"> 
     <meta name="apple-mobile-web-app-capable" content="yes" />
+
     <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  -->
     <meta name="theme-color" content="#00ECCE">
+     <!-- Enlace al archivo manifest -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- icons -->
     <link rel="apple-touch-icon" href="icon.png" />
     <link rel="apple-touch-startup-image" href="icon.png" />
+
+      <!-- Icono para la pestaña del navegador -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="icon.png" type="image/png">
+
+  
+  <!-- Iconos para dispositivos iOS -->
+  <link rel="apple-touch-icon" href="/icono-180x180.png"> <!-- icono de 180x180 -->
+  <link rel="apple-touch-icon" sizes="152x152" href="/icono-152x152.png"> <!-- icono de 152x152 -->
+  <link rel="apple-touch-icon" sizes="120x120" href="/icono-120x120.png"> <!-- icono de 120x120-->
+  
 
     <!-- https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html -->
     <!-- https://johan.im/writings/ios-homescreen-web-app/ -->
@@ -33,62 +46,7 @@
 
     <!-- No almacenar datos en caché  -->
  
-<style>
-.menu-toggle {
-  display: none;
-}
 
-.menu-toggle input {
-  display: none;
-}
-
-.menu-toggle span {
-  display: block;
-  background: #333;
-  height: 3px;
-  width: 25px;
-  margin-bottom: 5px;
-}
-
-.menu {
-  display: none;
-  position: absolute;
-  top: 50px; /* Ajusta según tus necesidades */
-  left: 0;
-  width: 100%;
-  background: #333;
-}
-
-.menu li {
-  padding: 10px;
-}
-
-.menu li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.menu-toggle input:checked + .menu {
-  display: block;
-}
-
-
-
-/* botones */
-
-.app-button {
-  background-color: #007bff; /* Color azul, puedes cambiarlo */
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-
-
-</style>
 
 
 
@@ -112,8 +70,31 @@
 
     <h1>Ejemplo de web con aspecto de App movil</h1>
     <p>Añade esta web al escritorio del movil</p>
-    <button class="app-button">Descargar</button>
+ 
+
+    <p>Busca en Googel Favicon Generator para encontrar una wb que genere los iconos neceasarios</p>
 
     
+
+
+      <!-- Script para registrar el Service Worker -->
+<script>
+     /*
+        Service Worker: Los service workers permiten que tu sitio web funcione offline y mejora la velocidad de carga. Aquí hay un ejemplo básico de cómo registrar un service worker en tu HTML:
+        */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function(registration) {
+            console.log('Service Worker registrado con éxito:', registration);
+          })
+          .catch(function(error) {
+            console.log('Fallo en el registro del Service Worker:', error);
+          });
+      });
+    }
+  </script>
+      
+
 </body>
 </html>
