@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones push</title>
+</head>
+<body>
+    <button onclick="askPermission()">Solicitar permiso para notificaciones</button>
+
+    <script>
+        function askPermission() {
+            Notification.requestPermission().then(function(result) {
+                if (result === 'granted') {
+                    showNotification();
+                }
+            });
+        }
+
+        function showNotification() {
+            var notification = new Notification('Hola, mundo!');
+        }
+    </script>
+</body>
+</html>

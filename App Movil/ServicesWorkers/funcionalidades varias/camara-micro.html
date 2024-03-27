@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso a la cámara y al micrófono</title>
+</head>
+<body>
+    <video autoplay></video>
+
+    <script>
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(function(stream) {
+                var video = document.querySelector('video');
+                video.srcObject = stream;
+            })
+            .catch(function(err) {
+                console.log("Ocurrió un error: " + err);
+            });
+    </script>
+</body>
+</html>

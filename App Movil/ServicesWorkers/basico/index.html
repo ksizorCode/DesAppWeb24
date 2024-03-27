@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+<body>
+    <h1>Services Workers</h1>
+<p>La siguiente web debería ejecutarse en el movil de manera ofline si se guarda en el escritorio del mismo </p>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+              console.log('ServiceWorker registrado con éxito:', registration);
+            }, function(err) {
+              console.log('Error al registrar el ServiceWorker:', err);
+            });
+          });
+        }
+      </script>
+      
+</body>
+</html>

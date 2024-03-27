@@ -1,0 +1,35 @@
+:root{
+    --c1:coral;
+    --c2:tan;
+    --c3:black;
+
+    --ff:sans-serif;
+    --mw:960px;
+}
+body{
+    font-family: var(--ff);
+    max-width:var(--mw);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6{}
+
+a{
+    text-decoration: none;
+}
+
+p a{ text-decoration: underline;}
+
+img{
+    max-width: 100%;
+}
+
+
+header, main, footer{}
+
+header{}
+
+main{}
+
+footer{}
