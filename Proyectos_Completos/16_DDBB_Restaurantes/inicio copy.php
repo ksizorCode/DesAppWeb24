@@ -67,10 +67,7 @@ include '_header.php';
 
 <form action="" class="formBuscador">
     <label for="inptBuscar" id="labelBuscar">Buscar</label>
-    <input type="text" name="b" id="inptBuscar" list="listarestaurantes"  onkeyup="myFunction()" placeholder="<?php echo $placeholder; ?>" title="Buscar restaurantes, lugares, tipos de comida...">
-
-
-
+    <input type="text" name="b" id="inptBuscar" list="listarestaurantes" placeholder="<?php echo $placeholder; ?>">
     
     <datalist id="listarestaurantes">
         <?php //Construir lista de sugerencias
@@ -88,8 +85,6 @@ include '_header.php';
 
     <input type="submit" value="Buscar">
 </form>
-
-
 
 
 
@@ -193,55 +188,6 @@ if (isset($datos) && !empty($datos)) {
 
     ?>
 </ul>
-
-
-
-
-
-
-
-
-
-<script>
-
-
-function myFunction() {
-  var input, filter, ul, li, elements, i, j, txtValue, existe;
-  input = document.getElementById("inptBuscar");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("catalogo");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    elements = li[i].querySelectorAll("h2, .extracto, .telefono, .direccion, .web, .email");
-    existe = false;
-    for (j = 0; j < elements.length; j++) {
-      txtValue = elements[j].textContent || elements[j].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        existe = true;
-        break; // Si se encuentra una coincidencia, no es necesario continuar buscando en los otros elementos
-      }
-    }
-    if (existe) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
 
 
 
