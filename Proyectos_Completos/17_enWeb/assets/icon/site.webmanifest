@@ -1,0 +1,14 @@
+{
+    "name": "Kuchillo de Palo",
+    "short_name": "KuchilloDePalo",
+    "icons": [
+        {
+            "src": "/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#FF0C49",
+    "background_color": "#FF0C49",
+    "display": "standalone"
+}
